@@ -24,19 +24,20 @@ import {
 } from "./pages";
 
 import "./App.css";
+import { useStateContext } from "./contexts/ContextProvider";
 
 function App() {
-  const activeMenu = true;
+  const { activeMenu } = useStateContext();
 
   return (
     <div>
       <BrowserRouter>
-        <div className="flex relative dark:bg-neutral-900">
+        <div className="flex relative dark:bg-main-dark-bg">
           <div className="fixed right-4 bottom-4" style={{ zindex: "1000" }}>
             <TooltipComponent content={"Settings"} position="Top">
               <button
                 type="button"
-                className="text-3xl p-3 hover:drop-shadow-xl hover:bg-slate-200 text-white"
+                className="text-3xl p-3 hover:drop-shadow-xl hover:bg-light-gray text-white"
                 style={{ background: "blue", borderRadius: "50%" }}
               >
                 <FiSettings />
@@ -44,20 +45,20 @@ function App() {
             </TooltipComponent>
           </div>
           {activeMenu ? (
-            <div className="w-72 fixed sidebar dark:bg-blend-darken bg-white">
+            <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white">
               <Sidebar />
             </div>
           ) : (
-            <div className="w-0 dark:bg-blend-darken">
+            <div className="w-0 dark:bg-secondary-dark-bg">
               <Sidebar />
             </div>
           )}
           <div
-            className={`dark:bg-white min-h-screen md:ml-72 w-full${
+            className={`dark:bg-main-dark-bg min-h-screen md:ml-72 w-full${
               activeMenu ? " md:ml-72" : " flex-2"
             }`}
           >
-            <div className="fixed md:static bg-white dark:bg-neutral-900 navbar w-full">
+            <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full">
               <Navbar />
             </div>
           </div>
